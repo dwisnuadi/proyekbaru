@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f4f4f4;
+  padding: 20px;
+}
+
+.profile, .time {
+  margin-bottom: 10px;
+}
+
+.input-area {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+}
+
+select, button {
+  padding: 10px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.todo table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.todo th, .todo td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.done ul {
+  list-style: none;
+  padding: 0;
+}
+
+.done li {
+  background: #d4edda;
+  padding: 8px;
+  margin-bottom: 5px;
+}
+
+.delete-all {
+  margin-top: 20px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px;
+}

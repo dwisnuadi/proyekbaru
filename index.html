@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To Do App</title>
+  <link rel="stylesheet" href="idenx.css">
+</head>
+<body>
+
+  <!-- PROFILE -->
+  <section class="profile">
+    <h2 id="name">Nama: I Gusti Ngurah Agung</h2>
+    <p id="role">Jabatan: Frontend Developer</p>
+  </section>
+
+  <!-- TIME -->
+  <section class="time">
+    <p id="date"></p>
+  </section>
+
+  <!-- INPUT TASK -->
+  <section class="input-area">
+    <textarea id="taskInput" placeholder="Tulis tugas di sini..."></textarea>
+
+    <select id="priority">
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
+    </select>
+
+    <button onclick="addTask()">Submit</button>
+  </section>
+
+  <!-- TO DO LIST -->
+  <section class="todo">
+    <h3>To Do</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Done</th>
+          <th>Tugas</th>
+          <th>Prioritas</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="todoList"></tbody>
+    </table>
+  </section>
+
+  <!-- DONE LIST -->
+  <section class="done">
+    <h3>Done</h3>
+    <ul id="doneList"></ul>
+  </section>
+
+  <!-- DELETE ALL -->
+  <button class="delete-all" onclick="deleteAll()">Delete All</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
