@@ -4,7 +4,7 @@
 }
 
 body {
-  background: #f4f4f4;
+  background: #FCF8F8;
   padding: 20px;
   bottom: 0;
 }
@@ -53,6 +53,17 @@ button {
   background: #d4edda;
   padding: 8px;
   margin-bottom: 5px;
+}
+
+.done-row {
+  background-color: #f1f1f1;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.done-item {
+  background-color: #d1f7d6;
+  text-decoration: line-through;
 }
 
 .delete-all {

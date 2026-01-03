@@ -2,94 +2,94 @@ const todoList = document.getElementById("todoList");
 const doneList = document.getElementById("doneList");
 const dateEl = document.getElementById("date");
 
-// TIME
+/* ================= TIME ================= */
 function updateTime() {
   const now = new Date();
   dateEl.textContent = now.toLocaleDateString("id-ID", {
     weekday: "long",
     year: "numeric",
     month: "long",
-    day: "numeric"
+    day: "numeric",
   });
 }
 updateTime();
 
-// ADD TASK
+/* ================= ADD TASK ================= */
 function addTask() {
   const taskInput = document.getElementById("taskInput");
-  const priority = document.getElementById("priority");
+  const prioritySelect = document.getElementById("priority");
 
-  if (taskInput.value === "") {
+  if (!taskInput.value.trim()) {
     alert("Tugas tidak boleh kosong!");
     return;
   }
 
   const row = document.createElement("tr");
 
-  // Checkbox
+  /* Checkbox */
   const checkTd = document.createElement("td");
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkTd.appendChild(checkbox);
 
-  
-  // Task text
+  /* Task */
   const taskTd = document.createElement("td");
   taskTd.textContent = taskInput.value;
 
-  // Priority
+  /* level */
   const priorityTd = document.createElement("td");
-  priorityTd.textContent = priority.value;
+  priorityTd.textContent = prioritySelect.value;
 
-  // Submit & Delete button
+  /* Time */
+  const timeTd = document.createElement("td");
+  timeTd.textContent = getDateTimeNow();
+
+  /* Delete */
   const actionTd = document.createElement("td");
   const delBtn = document.createElement("button");
   delBtn.textContent = "Delete";
   delBtn.onclick = () => row.remove();
   actionTd.appendChild(delBtn);
 
-  const doneBtn = document.createElement("button");
-  doneBtn.textContent = "Done";
-  doneBtn.style.marginLeft = "8px";
-  doneBtn.onclick = () => markDone(row);
-  actionTd.appendChild(doneBtn);
-  doneBtn.disabled = true;
+  /* Checkbox event */
+  checkbox.addEventListener("change", () => {
+    if (checkbox.checked) {
+      row.classList.add("done-item");
+      markDone(taskTd.textContent, priorityTd.textContent);
+    } else {
+      row.classList("done-item");
+      
+    }
+    
+  });
 
-  row.append(checkTd, taskTd, priorityTd, actionTd);
+  row.append(checkTd, taskTd, priorityTd, timeTd, actionTd);
   todoList.appendChild(row);
 
   taskInput.value = "";
-  priority.value = "Medium";
-
-  // Enable done button when checkbox is checked
-  checkbox.onchange = () => {
-    doneBtn.disabled = !checkbox.checked;
-  };  
+  prioritySelect.value = "Medium";
 }
 
-// DONE
-function markDone(row) {
-    const taskText = row.children[1].textContent;
-    const priority = row.children[2].textContent;
-    const doneTime = getDateTimeNow();
-  row.remove();
+/* ================= DONE ================= */
+function markDone(taskText, priority) {
   const li = document.createElement("li");
-  li.textContent = `${taskText} (${priority})`;
+  li.classname = "done-item"; 
+
   li.innerHTML = `
     <strong>${taskText} (${priority})</strong><br>
-    <small>📅 ${doneTime}</small>
+    <small>📅 ${getDateTimeNow()}</small>
   `;
   doneList.appendChild(li);
 }
 
-// DELETE ALL
+/* ================= DELETE ALL ================= */
 function deleteAll() {
+  if (!confirm("Hapus semua data?")) return;
   todoList.innerHTML = "";
   doneList.innerHTML = "";
 }
 
-// DONE TIME 
-
+/* ================= TIME HELPER ================= */
 function getDateTimeNow() {
   const now = new Date();
   return now.toLocaleString("id-ID", {
@@ -97,6 +97,6 @@ function getDateTimeNow() {
     month: "2-digit",
     year: "numeric",
     hour: "2-digit",
-    minute: "2-digit"
+    minute: "2-digit",
   });
 }
