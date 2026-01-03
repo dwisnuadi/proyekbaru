@@ -6,6 +6,7 @@
 body {
   background: #f4f4f4;
   padding: 20px;
+  bottom: 0;
 }
 
 .profile, .time {
