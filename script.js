@@ -30,9 +30,9 @@ function addTask() {
   const checkTd = document.createElement("td");
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
-  checkbox.onclick = () => markDone(row, taskInput.value);
   checkTd.appendChild(checkbox);
 
+  
   // Task text
   const taskTd = document.createElement("td");
   taskTd.textContent = taskInput.value;
@@ -41,17 +41,30 @@ function addTask() {
   const priorityTd = document.createElement("td");
   priorityTd.textContent = priority.value;
 
-  // Delete button
+  // Submit & Delete button
   const actionTd = document.createElement("td");
   const delBtn = document.createElement("button");
   delBtn.textContent = "Delete";
   delBtn.onclick = () => row.remove();
   actionTd.appendChild(delBtn);
 
+  const doneBtn = document.createElement("button");
+  doneBtn.textContent = "Done";
+  doneBtn.style.marginLeft = "8px";
+  doneBtn.onclick = () => markDone(row);
+  actionTd.appendChild(doneBtn);
+  doneBtn.disabled = true;
+
   row.append(checkTd, taskTd, priorityTd, actionTd);
   todoList.appendChild(row);
 
   taskInput.value = "";
+  priority.value = "Medium";
+
+  // Enable done button when checkbox is checked
+  checkbox.onchange = () => {
+    doneBtn.disabled = !checkbox.checked;
+  };  
 }
 
 // DONE
